@@ -3,16 +3,14 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('click', (e) => {
         e.preventDefault();
         const email = document.querySelector('input[name="email"]').value;
-        const username = email.split('@')[0];
         const password = document.querySelector('input[name="password"]').value;
 
         userObj = {
             "email": email, 
             'password': password, 
-            'username': username
         }
         
-        fetch('http://thesi.generalassemb.ly:8080/signup', {
+        fetch('http://thesi.generalassemb.ly:8080/login', {
             method: 'POST',
             body: JSON.stringify(userObj),
             headers: {

@@ -2,9 +2,10 @@
 
 const onLocalStroageChange = () => {
     const header = document.querySelector("header");
-    const userName = localStorage.getItem("username");
+    const email = localStorage.getItem("email");
+    console.log(localStorage)
     header.innerHTML = '';
-    if (userName){
+    if (email){
         let logOut = document.createElement("button");
         logOut.innerText = "Log Out";
         logOut.addEventListener('click', (el) => {
@@ -12,7 +13,7 @@ const onLocalStroageChange = () => {
             onLocalStroageChange();
         })
         let div = document.createElement('div');
-        div.innerText = "Hello, " + localStorage.getItem("username");
+        div.innerText = "Hello, " + localStorage.getItem("email");
         header.appendChild(div)
         header.appendChild(logOut)
         
