@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(data => {
             console.log(data);    
-            sessionStorage.setItem('token', data.token);
-            sessionStorage.setItem('username', username);
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('username', username);
             window.location.href = '/'
         })
         .catch(err => {
