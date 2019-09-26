@@ -1,5 +1,3 @@
-
-
 const onLocalStroageChange = () => {
     const header = document.querySelector("header");
     const email = localStorage.getItem("email");
@@ -16,7 +14,8 @@ const onLocalStroageChange = () => {
         div.innerText = "Hello, " + localStorage.getItem("email");
         header.appendChild(div)
         header.appendChild(logOut)
-        
+        // const mainCreatePost = document.getElementById('create-post');
+       
     }
     else {
         const signUp = document.createElement("a");
