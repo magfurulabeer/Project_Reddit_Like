@@ -30,4 +30,54 @@ const onLocalStroageChange = () => {
         
     }
 }
+let newPost=document.getElementById("new-post");
+newPost.addEventListener("click", function(){
+    let token = localStorage.getItem("token");
+    const title = document.querySelector("input[name='title']").value;
+    const description = document.querySelector("textarea[name='description']").value;
+  
+    fetch(`http://thesi.generalassemb.ly:8080/post`, {
+        method: 'POST',
+        body: JSON.stringify({
+            title,
+            description
+        }),
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            Authorization: 'Bearer ' + token
+        }
+    }).then(response => {
+        return response.json();
+    }).then(el => {
+        let post = document.createElement('div');
+        let allCommentsDiv = document.createElement('div');
+        let author = document.createElement('span');
+        let title = document.createElement('span');
+        let description = document.createElement('p');
+        let showComments = document.createElement('button');
+        showComments.addEventListener('click', () => {
+            onCommentsClick(el.id, allCommentsDiv, post);
+        })
+        showComments.innerText = 'Show Comments';
+        author.innerText = `Created by ${el.user.username}`;
+        title.innerText = el.title;
+        description.innerText = el.description;
+        post.appendChild(author);
+        post.appendChild(title);
+        post.appendChild(description);
+        post.appendChild(showComments);
+        post.appendChild(allCommentsDiv)
+        post.style = `
+            border: 1px solid black;
+            width: 80%;
+            margin: 0 auto;
+            margin-bottom: 10px;
+        `
+        document.querySelector('#posts').prepend(post)
+    }).catch(err => console.log(err))
+})
+
+
+
 onLocalStroageChange();

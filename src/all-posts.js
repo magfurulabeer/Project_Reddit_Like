@@ -7,7 +7,7 @@ fetch(`http://thesi.generalassemb.ly:8080/post/list`)
     return response.json();
 })
 .then(function(all_posts){
-    all_posts.map(el => {
+    all_posts.reverse().map(el => {
         let post = document.createElement('div');
         let allCommentsDiv = document.createElement('div');
         let author = document.createElement('span');
