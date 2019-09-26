@@ -43,28 +43,15 @@ function onCommentsClick(id, allCommentsDiv, post) {
     .then(response => response.json())
     .then(data => {
         //if div exist do not repost comments
-        data.map((el, index) => {
-            let div = document.createElement('div');
-            let creator = el.user.username;
-            div.innerHTML = `
-                <b>${creator}: </b>
-                <span>${el.text}</span>
-            `;
-            if (localStorage.getItem("email") && creator === localStorage.getItem('email').split('@')[0]) {
-                const button = document.createElement('button');
-                button.innerText = 'delete';
-                div.appendChild(button);
-                //add event handler for delete button
-            }
-   
-            allCommentsDiv.appendChild(div); 
+        data.map((el) => {
+            addComment(el, allCommentsDiv);
         })
         const addCommentDiv = document.createElement('div');
         const input = document.createElement('input');
         const button = document.createElement('button');
         button.innerText = 'Add comment'
         button.addEventListener('click', () => {
-            onCommentSubmitClick(id, input);
+            onCommentSubmitClick(id, input,allCommentsDiv);
         })
         addCommentDiv.appendChild(input);
         addCommentDiv.appendChild(button);
@@ -73,10 +60,24 @@ function onCommentsClick(id, allCommentsDiv, post) {
 }
 
 function onCommentDeleteClick(el) {
-    console.log(el)
+    console.log(el);
+    fetch(`http://thesi.generalassemb.ly:8080/comment/${id}`, {  //replace id
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + token
+        },
+        // body: JSON.stringify({
+        //     text
+        // }),
+        
+    }).then(response => {
+        return response.json();
+    }).then(data => {}
+    )
 }
 
-function onCommentSubmitClick(id, input) {
+function onCommentSubmitClick(id, input,allCommentsDiv) {
     console.log(localStorage.getItem('token'), id);
     const text = input.value;
     console.log(text);
@@ -94,8 +95,29 @@ function onCommentSubmitClick(id, input) {
         
     }).then(response => {
         return response.json();
-    }).then(data => {
-        console.log(data)
+    }).then(data => {        
+        addComment(data, allCommentsDiv);
+        input.value = '';
     })
 
+}
+
+function addComment(el, allCommentsDiv) {
+    let addComment = document.createElement('div');
+    let creator = el.user.username;
+    addComment.innerHTML = `
+        <b>${creator}: </b>
+        <span>${el.text}</span>
+    `;
+    if (localStorage.getItem("email") && creator === localStorage.getItem('email').split('@')[0]) {
+        const button = document.createElement('button');
+        button.innerText = 'delete';
+        addComment.appendChild(button);
+        //add event handler for delete button
+        button.addEventListener('click',()=>{
+            onCommentDeleteClick(button)
+        });
+    }
+    
+    allCommentsDiv.prepend(addComment);
 }
