@@ -59,22 +59,24 @@ function onCommentsClick(id, allCommentsDiv, post) {
     })
 }
 
-function onCommentDeleteClick(el) {
-    console.log(el);
-    fetch(`http://thesi.generalassemb.ly:8080/comment/${id}`, {  //replace id
+function onCommentDeleteClick(el, id, allCommentsDiv) {
+    console.log(el, id);
+    const token = localStorage.getItem('token');
+    fetch(`http://thesi.generalassemb.ly:8080/comment/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
+            'Accept': 'application/json',
             Authorization: 'Bearer ' + token
-        },
-        // body: JSON.stringify({
-        //     text
-        // }),
-        
-    }).then(response => {
-        return response.json();
-    }).then(data => {}
-    )
+        }
+    }).then(response => {  
+        return response.text();
+    }).then(data => {
+        if(data === 'success') {
+            const deletedComment = document.getElementById(id);
+            allCommentsDiv.removeChild(deletedComment);
+        }
+    })
 }
 
 function onCommentSubmitClick(id, input,allCommentsDiv) {
@@ -95,7 +97,9 @@ function onCommentSubmitClick(id, input,allCommentsDiv) {
         
     }).then(response => {
         return response.json();
-    }).then(data => {        
+    }).then(data => {
+        console.log(data);
+             
         addComment(data, allCommentsDiv);
         input.value = '';
     })
@@ -104,6 +108,7 @@ function onCommentSubmitClick(id, input,allCommentsDiv) {
 
 function addComment(el, allCommentsDiv) {
     let addComment = document.createElement('div');
+    addComment.id = el.id;
     let creator = el.user.username;
     addComment.innerHTML = `
         <b>${creator}: </b>
@@ -115,7 +120,7 @@ function addComment(el, allCommentsDiv) {
         addComment.appendChild(button);
         //add event handler for delete button
         button.addEventListener('click',()=>{
-            onCommentDeleteClick(button)
+            onCommentDeleteClick(button, el.id, allCommentsDiv)
         });
     }
     
