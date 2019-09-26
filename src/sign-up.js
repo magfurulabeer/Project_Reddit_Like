@@ -23,10 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
-            console.log(data);    
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('email', email);
-            window.location.href = '/'
+            if (data.token) {
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('email', email);
+                window.location.href = '/'
+            }
         })
         .catch(err => {
             console.log(err);

@@ -3,9 +3,9 @@
 const onLocalStroageChange = () => {
     const header = document.querySelector("header");
     const email = localStorage.getItem("email");
-    console.log(localStorage)
+    const token = localStorage.getItem("token");
     header.innerHTML = '';
-    if (email){
+    if (token && token !== 'undefined'){
         let logOut = document.createElement("button");
         logOut.innerText = "Log Out";
         logOut.addEventListener('click', (el) => {

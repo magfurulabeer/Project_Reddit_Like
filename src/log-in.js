@@ -20,11 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }).then(response => {
             return response.json();
         })
-        .then(data => {
-            console.log(data);    
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('email', email);
-            window.location.href = '/'
+        .then(data => {            
+            if (data.token) {
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('email', email);
+                window.location.href = '/'
+            }
         })
         .catch(err => {
             console.log(err);
