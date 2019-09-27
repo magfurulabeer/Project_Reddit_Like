@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
+            if(data.token === undefined) throw 'Invalid email or password'
             if (data.token) {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('email', email);
@@ -33,8 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
         .catch(err => {
-            console.log(err);
-            
+            alert(err);  
         })
     })
 })

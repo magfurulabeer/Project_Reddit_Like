@@ -7,41 +7,8 @@ fetch(`http://thesi.generalassemb.ly:8080/post/list`)
     return response.json();
 })
 .then(function(all_posts){
-    all_posts.reverse().map(el => {
-        let flag = 'show';
-        let post = document.createElement('div');
-        let allCommentsDiv = document.createElement('div');
-        let author = document.createElement('span');
-        let title = document.createElement('span');
-        let description = document.createElement('p');
-        let showComments = document.createElement('button');
-        showComments.innerText = 'Show Comments';
-        showComments.addEventListener('click', () => {
-            onCommentsClick(el.id, allCommentsDiv, post, flag);
-            if (flag === 'show') {
-                showComments.innerText = 'Hide Comments';
-                flag = 'hide';
-            } else {
-                showComments.innerText = 'Show Comments';
-                flag = 'show';
-            }
-            
-        })
-        author.innerText = `Created by ${el.user.username}`;
-        title.innerText = el.title;
-        description.innerText = el.description;
-        post.appendChild(author);
-        post.appendChild(title);
-        post.appendChild(description);
-        post.appendChild(showComments);
-        post.appendChild(allCommentsDiv)
-        post.style = `
-            border: 1px solid black;
-            width: 80%;
-            margin: 0 auto;
-            margin-bottom: 10px;
-        `
-        document.querySelector('#posts').appendChild(post)
+    all_posts.map(el => {
+        test(el);
     })
 })
 
@@ -141,4 +108,43 @@ function addComment(el, allCommentsDiv) {
     }
     
     allCommentsDiv.prepend(addComment);
+}
+
+function test(el) {
+    
+    let br = document.createElement('br');
+    let flag = 'show';
+    let post = document.createElement('div');
+    let allCommentsDiv = document.createElement('div');
+    let author = document.createElement('span');
+    let title = document.createElement('span');
+    let description = document.createElement('p');
+    let showComments = document.createElement('button');
+    showComments.innerText = 'Show Comments';
+    showComments.addEventListener('click', () => {
+        onCommentsClick(el.id, allCommentsDiv, post, flag);
+        if (flag === 'show') {
+            showComments.innerText = 'Hide Comments';
+            flag = 'hide';
+        } else {
+            showComments.innerText = 'Show Comments';
+            flag = 'show';
+        }
+    });
+    author.innerText = `Created by ${el.user.username}`;
+    title.innerText = el.title;
+    description.innerText = el.description;
+    post.appendChild(author);
+    post.appendChild(br)
+    post.appendChild(title);
+    post.appendChild(description);
+    post.appendChild(showComments);
+    post.appendChild(allCommentsDiv)
+    post.style = `
+        border: 1px solid black;
+        width: 80%;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    `;
+    document.querySelector('#posts').prepend(post)
 }

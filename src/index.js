@@ -51,31 +51,7 @@ newPost.addEventListener("submit", function(e){
     }).then(response => {
         return response.json();
     }).then(el => {
-        let post = document.createElement('div');
-        let allCommentsDiv = document.createElement('div');
-        let author = document.createElement('span');
-        let title = document.createElement('span');
-        let description = document.createElement('p');
-        let showComments = document.createElement('button');
-        showComments.addEventListener('click', () => {
-            onCommentsClick(el.id, allCommentsDiv, post);
-        })
-        showComments.innerText = 'Show Comments';
-        author.innerText = `Created by ${el.user.username}`;
-        title.innerText = el.title;
-        description.innerText = el.description;
-        post.appendChild(author);
-        post.appendChild(title);
-        post.appendChild(description);
-        post.appendChild(showComments);
-        post.appendChild(allCommentsDiv)
-        post.style = `
-            border: 1px solid black;
-            width: 80%;
-            margin: 0 auto;
-            margin-bottom: 10px;
-        `
-        document.querySelector('#posts').prepend(post)
+        test(el);
     }).catch(err => console.log(err))
 })
 

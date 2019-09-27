@@ -20,7 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }).then(response => {
             return response.json();
         })
-        .then(data => {            
+        .then(data => {
+            console.log(data);
+            if (data.httpStatus === "BAD_REQUEST") throw data.message
+                     
             if (data.token) {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('email', email);
@@ -28,8 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
         .catch(err => {
-            console.log(err);
-            
+            alert(err); 
         })
         // fetch('http://thesi.generalassemb.ly:8080/post/list').then(el => el.json()).then(el=> {
         //     console.log(el)
