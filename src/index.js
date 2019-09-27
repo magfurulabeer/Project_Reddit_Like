@@ -109,7 +109,7 @@ if (token) {
                 return response.json();
             }).then(el => {
                 document.body.removeChild(div)
-                test(el);
+                allPosts(el);
             }).catch(err => console.log(err))
         })
     })

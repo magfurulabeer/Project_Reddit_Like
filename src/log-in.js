@@ -33,8 +33,5 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(err => {
             alert(err); 
         })
-        // fetch('http://thesi.generalassemb.ly:8080/post/list').then(el => el.json()).then(el=> {
-        //     console.log(el)
-        // })
     })
 })
