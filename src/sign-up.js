@@ -1,11 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('#signup');
-    form.addEventListener('click', (e) => {
+    form.addEventListener('submit', (e) => {
         e.preventDefault();
         const email = document.querySelector('input[name="email"]').value;
         //add code to check if user input email and password
         const username = email.split('@')[0];
         const password = document.querySelector('input[name="password"]').value;
+
+        console.log(username + " " + password);
 
         userObj = {
             "email": email, 

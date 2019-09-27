@@ -31,7 +31,8 @@ const onLocalStroageChange = () => {
     }
 }
 let newPost=document.getElementById("new-post");
-newPost.addEventListener("click", function(){
+newPost.addEventListener("submit", function(e){
+    e.preventDefault();
     let token = localStorage.getItem("token");
     const title = document.querySelector("input[name='title']").value;
     const description = document.querySelector("textarea[name='description']").value;
