@@ -104,7 +104,6 @@ function addComment(el, allCommentsDiv) {
     addComment.innerHTML = `
         <b>${creator}: </b>
         <span>${el.text}</span>
-        <hr style='margin: 0 auto'>
     `;
     if (localStorage.getItem("email") && creator === localStorage.getItem('email').split('@')[0]) {
         const button = document.createElement('span');
@@ -115,7 +114,9 @@ function addComment(el, allCommentsDiv) {
             onCommentDeleteClick(button, el.id, allCommentsDiv)
         });
     }
-    
+    const hr = document.createElement('hr');
+    hr.style = 'margin: 0 auto';
+    addComment.append(hr);
     allCommentsDiv.prepend(addComment);
 }
 
