@@ -55,16 +55,19 @@ function onCommentsClick(id, allCommentsDiv, post, flag) {
             data.map((el) => {
                 addComment(el, allCommentsDiv);
             });
-            const addCommentDiv = document.createElement('div');
+            const addCommentform = document.createElement('form');
             const input = document.createElement('input');
             const button = document.createElement('button');
-            button.innerText = 'Add comment'
-            button.addEventListener('click', () => {
+            button.type = 'submit';
+            input.required = true;
+            button.innerText = 'Add comment';
+            addCommentform.addEventListener('submit', (e) => {
+                e.preventDefault();
                 onCommentSubmitClick(id, input,allCommentsDiv);
             })
-            addCommentDiv.appendChild(input);
-            addCommentDiv.appendChild(button);
-            post.appendChild(addCommentDiv);
+            addCommentform.appendChild(input);
+            addCommentform.appendChild(button);
+            post.appendChild(addCommentform);
         })
     } else {
         flag = 'show';
