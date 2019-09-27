@@ -1,0 +1,28 @@
+.sign-in {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
+
+.btn-primary {
+    margin-top: 10px;
+}
+
+#new-post {
+    border: 1px solid black;
+    border-radius: 5px;
+    background: #f8f9fa;
+    width: 60%;
+    padding: 15px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.new-post-div {
+    background: rgba(0,0,0, .5);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+}

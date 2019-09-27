@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Sign in</title>
 </head>
-<body>
-    <a href="/sign-up.html">Sign up</a>
-    <form id="signup">
-        <label for="email">Email</label>
-        <input type="text" name='email' required>
-        <label for="password">Password</label>
-        <input type="password" name='password' required>
-        <input type='submit' value="Sign in">
+<body class='text-center'>
+    <form class='sign-in' id="log-in">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" name='email' class="form-control" placeholder="Email address" required="" autofocus="">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name='password' class="form-control" placeholder="Password" required="">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
+    <a href="/sign-up.html">Sign up</a>
+   
 </body>
 <script src="./src/log-in.js"></script>
 </html>

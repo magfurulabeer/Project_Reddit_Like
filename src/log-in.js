@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('#signup');
+    const form = document.querySelector('#log-in');
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         const email = document.querySelector('input[name="email"]').value;
