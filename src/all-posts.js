@@ -8,16 +8,25 @@ fetch(`http://thesi.generalassemb.ly:8080/post/list`)
 })
 .then(function(all_posts){
     all_posts.reverse().map(el => {
+        let flag = 'show';
         let post = document.createElement('div');
         let allCommentsDiv = document.createElement('div');
         let author = document.createElement('span');
         let title = document.createElement('span');
         let description = document.createElement('p');
         let showComments = document.createElement('button');
-        showComments.addEventListener('click', () => {
-            onCommentsClick(el.id, allCommentsDiv, post);
-        })
         showComments.innerText = 'Show Comments';
+        showComments.addEventListener('click', () => {
+            onCommentsClick(el.id, allCommentsDiv, post, flag);
+            if (flag === 'show') {
+                showComments.innerText = 'Hide Comments';
+                flag = 'hide';
+            } else {
+                showComments.innerText = 'Show Comments';
+                flag = 'show';
+            }
+            
+        })
         author.innerText = `Created by ${el.user.username}`;
         title.innerText = el.title;
         description.innerText = el.description;
@@ -36,27 +45,31 @@ fetch(`http://thesi.generalassemb.ly:8080/post/list`)
     })
 })
 
-function onCommentsClick(id, allCommentsDiv, post) {
-
+function onCommentsClick(id, allCommentsDiv, post, flag) {
     allCommentsDiv.innerHTML = '';
-    fetch(`http://thesi.generalassemb.ly:8080/post/${id}/comment`)
-    .then(response => response.json())
-    .then(data => {
-        //if div exist do not repost comments
-        data.map((el) => {
-            addComment(el, allCommentsDiv);
+    if (flag === 'show') {
+        fetch(`http://thesi.generalassemb.ly:8080/post/${id}/comment`)
+        .then(response => response.json())
+        .then(data => {
+            //if div exist do not repost comments
+            data.map((el) => {
+                addComment(el, allCommentsDiv);
+            });
+            const addCommentDiv = document.createElement('div');
+            const input = document.createElement('input');
+            const button = document.createElement('button');
+            button.innerText = 'Add comment'
+            button.addEventListener('click', () => {
+                onCommentSubmitClick(id, input,allCommentsDiv);
+            })
+            addCommentDiv.appendChild(input);
+            addCommentDiv.appendChild(button);
+            post.appendChild(addCommentDiv);
         })
-        const addCommentDiv = document.createElement('div');
-        const input = document.createElement('input');
-        const button = document.createElement('button');
-        button.innerText = 'Add comment'
-        button.addEventListener('click', () => {
-            onCommentSubmitClick(id, input,allCommentsDiv);
-        })
-        addCommentDiv.appendChild(input);
-        addCommentDiv.appendChild(button);
-        post.appendChild(addCommentDiv)
-    })
+    } else {
+        flag = 'show';
+        post.removeChild(post.lastChild)
+    }
 }
 
 function onCommentDeleteClick(el, id, allCommentsDiv) {
