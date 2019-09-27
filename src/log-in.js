@@ -1,3 +1,5 @@
+// Log in implementation
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('#log-in');
     form.addEventListener('submit', (e) => {

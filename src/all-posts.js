@@ -1,16 +1,17 @@
-console.log("Hello World");
 const posts = document.getElementById('posts');
 
-//Retrieves all posts and push into table
+//Retrieves all posts and push into DOM
 fetch(`http://thesi.generalassemb.ly:8080/post/list`)
 .then(function(response){
     return response.json();
 })
 .then(function(all_posts){
     all_posts.map(el => {
-        allPosts(el);
+        createPost(el);
     })
 })
+
+// This function will open all comments for each posts
 
 function onCommentsClick(id, allCommentsDiv, post, flag) {
     allCommentsDiv.innerHTML = '';
@@ -50,6 +51,8 @@ function onCommentsClick(id, allCommentsDiv, post, flag) {
     }
 }
 
+// Function would delete specific coment if click delete button
+
 function onCommentDeleteClick(el, id, allCommentsDiv) {
     console.log(el, id);
     const token = localStorage.getItem('token');
@@ -69,6 +72,8 @@ function onCommentDeleteClick(el, id, allCommentsDiv) {
         }
     })
 }
+
+// This function would create new comment on click event
 
 function onCommentSubmitClick(id, input,allCommentsDiv) {
     console.log(localStorage.getItem('token'), id);
@@ -97,6 +102,8 @@ function onCommentSubmitClick(id, input,allCommentsDiv) {
 
 }
 
+// this function will create DOM element for new comment once creted
+
 function addComment(el, allCommentsDiv) {
     let addComment = document.createElement('div');
     addComment.id = el.id;
@@ -120,7 +127,9 @@ function addComment(el, allCommentsDiv) {
     allCommentsDiv.prepend(addComment);
 }
 
-function allPosts(el) {
+//this function will create single post
+
+function createPost(el) {
     let flag = 'show';
     let hr = document.createElement('hr');
     let post = document.createElement('div');

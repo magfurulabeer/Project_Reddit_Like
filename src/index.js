@@ -1,6 +1,6 @@
 let token = localStorage.getItem("token");
-
-const onLocalStroageChange = () => {
+// This function would render the index.html
+const render = () => {
     const header = document.querySelector("header");
     const email = localStorage.getItem("email");
     header.innerHTML = '';
@@ -21,7 +21,7 @@ const onLocalStroageChange = () => {
         logOut.innerText = "Log Out";
         logOut.addEventListener('click', (el) => {
             localStorage.clear();
-            onLocalStroageChange();
+            render();
         })       
     } else {
         const signUp = document.createElement("a");
@@ -43,6 +43,8 @@ const onLocalStroageChange = () => {
         document.querySelector('.form-inline').append(logIn, signUp)
     }
 }
+
+// this blick would check wether we login, if yes then desplay add post feature;
 if (token) {
     const button = document.createElement('button');
     button.className = 'btn btn-outline-success my-2 my-sm-0';
@@ -118,4 +120,4 @@ if (token) {
 
 
 
-onLocalStroageChange();
+render();

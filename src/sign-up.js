@@ -1,3 +1,6 @@
+// Sign in implementation
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('#signup');
     form.addEventListener('submit', (e) => {
