@@ -41,9 +41,11 @@ function onCommentsClick(id, allCommentsDiv, post, flag) {
                 e.preventDefault();
                 onCommentSubmitClick(id, input,allCommentsDiv);
             })
-            addCommentform.appendChild(input);
-            addCommentform.appendChild(button);
-            post.appendChild(addCommentform);
+            if (localStorage.getItem('token')) {
+                addCommentform.appendChild(input);
+                addCommentform.appendChild(button);
+                post.appendChild(addCommentform);
+            }
         })
     } else {
         flag = 'show';
@@ -130,6 +132,8 @@ function addComment(el, allCommentsDiv) {
 //this function will create single post
 
 function createPost(el) {
+    console.log(el);
+    
     let flag = 'show';
     let hr = document.createElement('hr');
     let post = document.createElement('div');
