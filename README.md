@@ -22,7 +22,7 @@ https://drive.google.com/file/d/1YOPOncGN4UADRZwkKkDahOsz3PjCEjjY/view?usp=shari
 
 Wireframe:
 
-[wire frame]
+https://drive.google.com/file/d/1YOTXd4FtYr_BDO2YhwM8gPa1dGo6PE-o/view?usp=sharing
 
 Installation Instructions:
 
