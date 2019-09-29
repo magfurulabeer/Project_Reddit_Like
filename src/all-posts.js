@@ -1,16 +1,5 @@
 const posts = document.getElementById('posts');
 
-//Retrieves all posts and push into DOM
-fetch(`http://thesi.generalassemb.ly:8080/post/list`)
-.then(function(response){
-    return response.json();
-})
-.then(function(all_posts){
-    all_posts.map(el => {
-        createPost(el);
-    })
-})
-
 // This function will open all comments for each posts
 
 function onCommentsClick(id, allCommentsDiv, post, flag) {
@@ -23,9 +12,11 @@ function onCommentsClick(id, allCommentsDiv, post, flag) {
             data.map((el) => {
                 addComment(el, allCommentsDiv);
             });
+            console.log(id);
+            
             const addCommentform = document.createElement('form');
             addCommentform.style = 'display: flex; margin: 10px 0 10px 0;';
-            addCommentform.id = 'addCommentform';
+            addCommentform.id = `addCommentform${id}`;
             const input = document.createElement('input');
             input.setAttribute('class', "form-control");
             input.setAttribute('placeholder', "Add comment");
@@ -54,7 +45,7 @@ function onCommentsClick(id, allCommentsDiv, post, flag) {
         
         flag = 'show';
         try {
-            post.removeChild(document.querySelector('#addCommentform'));
+            post.removeChild(document.querySelector(`#addCommentform${id}`));
         } catch (error) {
             console.log(error);
         }

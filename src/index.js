@@ -3,8 +3,18 @@ let token = localStorage.getItem("token");
 const render = () => {
     const header = document.querySelector("header");
     const email = localStorage.getItem("email");
+    document.querySelector('#posts').innerHTML = '';
     header.innerHTML = '';
-    
+    //Retrieves all posts and push into DOM
+    fetch(`http://thesi.generalassemb.ly:8080/post/list`)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(all_posts){
+        all_posts.map(el => {
+            createPost(el);
+        })
+    })
     if (localStorage.getItem("token") && localStorage.getItem("token") !== 'undefined'){
         header.innerHTML = `
             <nav class="navbar navbar-light bg-light justify-content-between">
@@ -88,7 +98,7 @@ const render = () => {
                 }).then(response => {
                     return response.json();
                 }).then(el => {
-                    document.body.removeChild(div)
+                    document.body.removeChild(div);
                     createPost(el);
                 }).catch(err => console.log(err))
             })
@@ -110,11 +120,12 @@ const render = () => {
                 </form>
             </nav>
          `;
+        
         document.querySelector('.form-inline').append(logIn, signUp)
     }
 }
 
-// this blick would check wether we login, if yes then desplay add post feature;
+// this block would check wether we login, if yes then desplay add post feature;
 
 
 render();
