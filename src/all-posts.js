@@ -48,8 +48,15 @@ function onCommentsClick(id, allCommentsDiv, post, flag) {
             }
         })
     } else {
+        console.log('here');
+        console.log(allCommentsDiv);
+        
         flag = 'show';
-        post.removeChild(post.lastChild)
+        try {
+            post.removeChild(allCommentsDiv)
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
@@ -132,7 +139,6 @@ function addComment(el, allCommentsDiv) {
 //this function will create single post
 
 function createPost(el) {
-    console.log(el);
     
     let flag = 'show';
     let hr = document.createElement('hr');
