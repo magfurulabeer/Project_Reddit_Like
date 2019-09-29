@@ -25,6 +25,7 @@ function onCommentsClick(id, allCommentsDiv, post, flag) {
             });
             const addCommentform = document.createElement('form');
             addCommentform.style = 'display: flex; margin: 10px 0 10px 0;';
+            addCommentform.id = 'addCommentform';
             const input = document.createElement('input');
             input.setAttribute('class', "form-control");
             input.setAttribute('placeholder', "Add comment");
@@ -49,11 +50,11 @@ function onCommentsClick(id, allCommentsDiv, post, flag) {
         })
     } else {
         console.log('here');
-        console.log(allCommentsDiv);
+        
         
         flag = 'show';
         try {
-            post.removeChild(allCommentsDiv)
+            post.removeChild(document.querySelector('#addCommentform'));
         } catch (error) {
             console.log(error);
         }
