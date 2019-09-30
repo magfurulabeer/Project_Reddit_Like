@@ -27,7 +27,7 @@ const render = () => {
 
         let logOut = document.querySelector('.btn-outline-success');
     
-        const button = document.createElement('button');
+        const button = document.createElement('button');  //create post button
 
         logOut.innerText = "Log Out";
         logOut.addEventListener('click', (el) => {
@@ -98,7 +98,7 @@ const render = () => {
                 }).then(response => {
                     return response.json();
                 }).then(el => {
-                    document.body.removeChild(div);
+                    document.body.removeChild(div);  //remove new post form
                     createPost(el);
                 }).catch(err => console.log(err))
             })

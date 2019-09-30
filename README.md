@@ -10,7 +10,7 @@ HTML and Javascript, were utilized to develop the front-end of the project.  Jav
 
 The first task to programming was to understand how to obtain the token from the API.  Many of the functions of the application, such as adding/removing posts/comments required user authentication in order to prevent the user from making unauthorized entries in the application. Also, at the onset of programming, it was important to design a page that would organize the structure of all posts so that it would not be too difficult to update them dynamically as the user made submissions.   Once these two tasks were completed and tested, we added functions to add and remove comments from the existing posts. Testing was performed to make sure that the programming to modify existing posts was working correctly.  Next, functions were developed to add new posts which were also tested. After the functions were done being programmed, styles were applied to the code. The final step was to review the existing comments and update the comments in the code. After programming was completed, the entire application was tested to make sure all functions were working correctly.
 
-One of the major hurdles encountered during this project revolved around coding the fetch statements so they were in a format the API was expecting.  Another issue with the fetch was understanding how to pass a token to the API and save it to the local drive.  Coding the fetch statements required many iterations of trial and error. The second issue was refreshing the log of all posts as new posts were added and also when comments were added and removed. Several coding techniques were implemented to keep the listing of all posts updated after every user submission.  Lastly, learning how to use the Postman application was a secondary concern.
+One of the major hurdles encountered during this project revolved around coding the fetch statements so they were in a format the API was expecting.  Another issue with the fetch was understanding how to pass a token to the API and save it to the local drive.  Coding the fetch statements required many iterations of trial and error. The second issue was refreshing the log of all posts as new posts were added and also when comments were added and removed. Several coding techniques were implemented to keep the listing of all posts updated after every user submission.  Third, when a user logged out, the functions to add posts and add/remove comments could not be used. Lastly, learning how to use the Postman application was a secondary concern.
 
 User Stories:
 
@@ -22,7 +22,7 @@ https://drive.google.com/file/d/1YOPOncGN4UADRZwkKkDahOsz3PjCEjjY/view?usp=shari
 
 Wireframe:
 
-https://drive.google.com/file/d/1YOTXd4FtYr_BDO2YhwM8gPa1dGo6PE-o/view?usp=sharing
+https://drive.google.com/file/d/1BwLWXQ2ESs8CTgY4PTMpcHWIPtREIVy8/view?usp=sharing
 
 Installation Instructions:
 
