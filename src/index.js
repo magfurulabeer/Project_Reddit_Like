@@ -6,7 +6,7 @@ const render = () => {
     document.querySelector('#posts').innerHTML = '';
     header.innerHTML = '';
     //Retrieves all posts and push into DOM
-    fetch(`http://thesi.generalassemb.ly:8080/post/list`)
+    fetch(`http://localhost:8080/reddit-monolith/post/list`)
     .then(function(response){
         return response.json();
     })
@@ -84,7 +84,7 @@ const render = () => {
                 const title = document.querySelector("input[name='title']").value;
                 const description = document.querySelector("textarea[name='description']").value;
             
-                fetch(`http://thesi.generalassemb.ly:8080/post`, {
+                fetch(`http://localhost:8080/reddit-monolith/post`, {
                     method: 'POST',
                     body: JSON.stringify({
                         title,

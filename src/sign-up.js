@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'username': username
         }
         
-        fetch('http://thesi.generalassemb.ly:8080/signup', {
+        fetch('http://localhost:8080/reddit-monolith/signup', {
             method: 'POST',
             body: JSON.stringify(userObj),
             headers: {

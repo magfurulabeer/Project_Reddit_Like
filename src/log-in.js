@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'password': password, 
         }
         
-        fetch('http://thesi.generalassemb.ly:8080/login', {
+        fetch('http://localhost:8080/reddit-monolith/login', {
             method: 'POST',
             body: JSON.stringify(userObj),
             headers: {
