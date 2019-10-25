@@ -6,11 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const email = document.querySelector('input[name="email"]').value;
         const password = document.querySelector('input[name="password"]').value;
+        const username = email.split('@')[0];
 
-        userObj = {
-            "email": email, 
-            'password': password, 
-        }
+        userObj = { username, password }
         
         fetch('http://localhost:8080/reddit-monolith/login', {
             method: 'POST',
