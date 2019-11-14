@@ -5,7 +5,7 @@ const posts = document.getElementById('posts');
 function onCommentsClick(id, allCommentsDiv, post, flag) {
     allCommentsDiv.innerHTML = '';
     if (flag === 'show') {
-        fetch(`http://localhost:8080/reddit-monolith/post/${id}/comment`)
+        fetch(`http://localhost:8080/comments/${id}`)
         .then(response => response.json())
         .then(data => {
             //if div exist do not repost comments
@@ -57,7 +57,7 @@ function onCommentsClick(id, allCommentsDiv, post, flag) {
 function onCommentDeleteClick(el, id, allCommentsDiv) {
     console.log(el, id);
     const token = localStorage.getItem('token');
-    fetch(`http://localhost:8080/reddit-monolith/comment/${id}`, {
+    fetch(`http://localhost:8080/comments/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ function onCommentSubmitClick(id, input,allCommentsDiv) {
     console.log(text);
     const token = localStorage.getItem('token');
 
-    fetch(`http://localhost:8080/reddit-monolith/comment/${id}`, {
+    fetch(`http://localhost:8080/comments/${id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

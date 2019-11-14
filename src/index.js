@@ -6,7 +6,7 @@ const render = () => {
     document.querySelector('#posts').innerHTML = '';
     header.innerHTML = '';
     //Retrieves all posts and push into DOM
-    fetch(`http://localhost:8080/reddit-monolith/post/list`)
+    fetch(`http://localhost:8080/posts/list`)
     .then(function(response){
         return response.json();
     })
