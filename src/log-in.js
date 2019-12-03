@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         userObj = { email, password }
         
-        fetch('http://localhost:8080/reddit-monolith/login', {
+        fetch('http://localhost:8080/users/login', {
             method: 'POST',
             body: JSON.stringify(userObj),
             headers: {
